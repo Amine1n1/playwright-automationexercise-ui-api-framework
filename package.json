@@ -1,0 +1,22 @@
+{
+  "name": "playwright-automationexercise-ui-api-framework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "report": "npx allure generate allure-results --output allure-report --clean --open",
+    "test:report": "npx playwright test && npx allure generate allure-results --output allure-report --clean --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.2",
+    "allure-commandline": "^2.42.1",
+    "allure-playwright": "^3.9.0",
+    "dotenv": "^17.4.2",
+    "rimraf": "^6.1.3"
+  }
+}
