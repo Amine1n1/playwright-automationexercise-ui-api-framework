@@ -41,6 +41,9 @@ export default defineConfig({
     testIdAttribute: 'data-qa',
     actionTimeout: 15000,
     navigationTimeout: 30000,
+    extraHTTPHeaders: {
+    'Accept': 'text/html'
+  }
   },
 
   /* Configure projects for major browsers */
