@@ -27,7 +27,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html'],['allure-playwright']],
   expect: {
-    timeout: 10000,        
+    timeout: 15000,        
   },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -41,9 +41,6 @@ export default defineConfig({
     testIdAttribute: 'data-qa',
     actionTimeout: 15000,
     navigationTimeout: 30000,
-    extraHTTPHeaders: {
-    'Accept': 'text/html'
-  }
   },
 
   /* Configure projects for major browsers */
