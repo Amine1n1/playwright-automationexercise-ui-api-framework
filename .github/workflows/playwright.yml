@@ -55,7 +55,12 @@ jobs:
           INVALID_USERNAME: ${{ secrets.INVALID_USERNAME }}
           INVALID_PASSWORD: ${{ secrets.INVALID_PASSWORD }}
 
-      # Step 8: Upload Allure results (always, even if tests fail)
+      # Step 8: Generate and Upload Allure results (always, even if tests fail)
+
+      - name: Generate Allure Report
+        run: npx allure generate allure-results --output allure-report --clean
+        if: always()
+
       - name: Upload Allure results
         uses: actions/upload-artifact@v4
         if: always()
