@@ -21,6 +21,27 @@ type MyFixtures = {
 export const test = base.extend<MyFixtures>({
   // Re-use Playwright’s default `page`
   pm: async ({ page }, use) => {
+     // ✅ Block all ad networks
+  await page.route('**/*', route => {
+    const blockedDomains = [
+      'googlesyndication',
+      'googleadservices',
+      'doubleclick',
+      'google-analytics',
+      'googletagmanager',
+      'adsbygoogle',
+      'amazon-adsystem',
+      'facebook.net',
+      'connect.facebook',
+    ];
+
+    const url = route.request().url();
+    if (blockedDomains.some(domain => url.includes(domain))) {
+      route.abort();
+    } else {
+      route.continue();
+    }
+  });
     await use(new PomManager(page));
   },
 
