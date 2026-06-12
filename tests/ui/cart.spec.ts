@@ -64,7 +64,7 @@ test.describe('Cart Tests', () => {
 
   });
 
-  test('Choose Quantity from product details page, click add to cart and check the quantity in the cart for multiple products', async ({ pm }) => {
+  test('Choose Quantity from product details page, click add to cart and check the quantity in the cart for multiple products', async ({ pm, page }) => {
     const productId = ['1', '5', '2'];
     const quantity = [4, 2, 6];
 

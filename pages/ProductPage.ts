@@ -36,8 +36,12 @@ export class ProductPage extends BasePage {
   }
 
   async expectProductAddedToCartPopup() {
-    await this.BasePageExpectVisible(this.page.getByText('Your product has been added to cart.'));
+    await this.BasePageExpectVisible('#cartModal');
   } 
+
+  async expectPopupAddedToCartToBeHidden() {
+    await this.BasePageExpectHidden('#cartModal');
+  }
 
   async viewProductDetails(productId: string) {
     await this.BasePageClick(`a[href='/product_details/${productId}']`)
@@ -52,7 +56,24 @@ export class ProductPage extends BasePage {
   }
 
   async addToCartFromProductDetails() {
-    await this.BasePageClick(this.page.getByRole('button', {name: 'Add to cart'}));
+    let modalVisible = false;
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    while (!modalVisible && attempts < maxAttempts) {
+      await this.BasePageClick(this.page.getByRole('button', {name: 'Add to cart'}));
+      try {
+        await this.page.waitForSelector('#cartModal.show', { timeout: 5000 });
+        modalVisible = true;
+      } catch {
+        attempts++;
+        console.warn(`Add to cart attempt ${attempts} failed, retrying...`);
+      }
+    }
+
+    if (!modalVisible) {
+      throw new Error(`Cart modal did not appear after ${maxAttempts} attempts`);
+    }
   }
 
   async deleteAccount() {

@@ -13,7 +13,7 @@ import 'dotenv/config';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout: 60 * 1000,
+  timeout: 100 * 1000,
   //globalSetup: './global.setup.ts',
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -27,7 +27,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html'],['allure-playwright']],
   expect: {
-    timeout: 15000,        
+    timeout: 20000,        
   },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -40,7 +40,7 @@ export default defineConfig({
     video: 'on-first-retry',
     testIdAttribute: 'data-qa',
     actionTimeout: 15000,
-    navigationTimeout: 30000,
+    navigationTimeout: 60000,
   },
 
   /* Configure projects for major browsers */

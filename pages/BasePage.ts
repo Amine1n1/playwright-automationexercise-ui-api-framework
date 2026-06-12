@@ -38,6 +38,10 @@ export abstract class BasePage {
     await expect(this.toLocator(selector)).toBeVisible();
   }
 
+  protected async BasePageExpectHidden(selector: string | Locator) {
+    await expect(this.toLocator(selector)).toBeHidden();
+  }
+
    protected async BasePageExpectEnabled(selector: string | Locator) {
     await expect(this.toLocator(selector)).toBeEnabled();
   }
